@@ -1,0 +1,16 @@
+[user]
+	name = Viktor Zhurbin
+	email = vzhurbin@gmail.com
+[core]
+	editor = code --wait
+	excludesFile = /home/viktor/.gitignore
+
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
