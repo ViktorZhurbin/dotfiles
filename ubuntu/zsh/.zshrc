@@ -1,58 +1,8 @@
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zs="code ~/.zshrc"
-alias zss="source ~/.zshrc"
-
-#Git
-alias gpf="git push --force"
-alias gz="git cz"
-# force fetch tags for "would clobber existing tag" error
-alias gft="gf --tags -f"
-
-# uncommit last commit
-alias guc="git reset HEAD^"
-
-# fetch and merge develop branch
-alias gmd="gf && git merge origin/develop"
-
-# list npm packages installed globally
-alias npm-global="npm list -g --depth=0"
-
-alias start="yarn start"
-alias st="yarn start"
-alias go="yarn start"
-alias bld="yarn build"
-alias li="yarn lint"
-alias dev="yarn dev"
-
-# Impress backoffice
-alias tc="yarn typecheck"
-alias tca="yarn workspaces run typecheck"
-
-alias lc="yarn link-common"
-alias ulc="yarn unlink-common"
-
-alias lcgo="cd ../../ && lc && cd apps/scheduler && go"
-
-alias kdk="../kalendarik && go"
-alias sc="../scheduler && go"
-alias pl="../scheduler && go"
-alias em="../employees && go"
-
-alias stats="history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head"
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dev/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -73,14 +23,13 @@ ZSH_THEME="cobalt2"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -147,14 +96,41 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+alias zs="code ~/.zshrc"
+alias zss="source ~/.zshrc"
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+#Git
+alias gpf="git push --force"
+alias gz="git cz"
+# force fetch tags for "would clobber existing tag" error
+alias gft="gf --tags -f"
+
+# uncommit last commit
+alias guc="git reset HEAD^"
+
+# fetch and merge develop branch
+alias gmd="gf && git merge origin/develop"
+
+# list npm packages installed globally
+alias npm-global="npm list -g --depth=0"
+
+alias start="yarn start"
+alias st="yarn start"
+alias go="yarn start"
+alias bld="yarn build"
+alias li="yarn lint"
+alias dev="yarn dev"
+
+# Ubuntu
+alias up="upd && upg"
+alias upd="sudo apt update"
+alias upg="sudo apt upgrade"
