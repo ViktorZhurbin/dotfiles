@@ -1,6 +1,59 @@
+# Add these to your ~/.config/fish/conf.d/abbreviations.fish
+
+# npm
+abbr -a -- in npm i
+
+abbr -a -- bld npm run build
+abbr -a -- prev npm run preview
+abbr -a -- dev npm run dev
+# npm end
+
+# pnpm
+abbr -a -- pn pnpm
+# pnpm end
+
+# Pumble
+abbr -a -- go npm run start:web
+abbr -a -- go-calls npm run start:calls
+
+abbr -a -- goi "npm i && npm run start:web"
+
+abbr -a -- bld-web npm run build:web
+abbr -a -- bld-calls npm run build:calls
+abbr -a -- bld-all npm run build:all
+
+abbr -a -- tc npm run type-check:web
+
+abbr -a -- li npm run lint-code:all
+abbr -a -- lint-web npm run lint-code:web
+abbr -a -- lint-calls npm run lint-code:calls
+abbr -a -- lint-all npm run lint:all
+
+abbr -a -- format-web npm run format:web
+abbr -a -- format-calls npm run format:calls
+abbr -a -- format npm run format:all
+
+abbr -a -- sl npm run lint-styles:all
+
+abbr -a -- check-web npm run parallel -- '' \
+  build:web,format:web,lint-code:web,lint-styles:web,i18n:web,check-i18n:web,unit-test:web
+
+abbr -a -- check-calls npm run parallel -- '' \
+  build:calls,format:calls,lint-code:calls,lint-styles:calls,i18n:calls,check-i18n:calls,unit-test:calls
+
+abbr -a -- check-all npm run parallel -- '' \
+  build:all,format:all,lint-code:all,lint-styles:all,i18n:all,check-i18n:all,unit-test:all
+# Pumble end
+
+# fish ab config
+abbr -a -- fa code ~/.config/fish/conf.d/abbreviations.fish
+abbr -a -- fas source ~/.config/fish/conf.d/abbreviations.fish
+# fish ab config end
 
 # fish config
+abbr -a -- zs code ~/.config/fish/config.fish
 abbr -a -- fs code ~/.config/fish/config.fish
+abbr -a -- zss source ~/.config/fish/config.fish
 abbr -a -- fss source ~/.config/fish/config.fish
 # fish config end
 
