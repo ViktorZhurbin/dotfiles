@@ -19,27 +19,27 @@ function prompt_segment -d "Draw a segment of the prompt"
     set -l bg $argv[1]
     set -l fg $argv[2]
     set -l content $argv[3]
-    
+
     # Set background and foreground
     if test -n "$bg"
         set bg_code (set_color -b $bg)
     else
         set bg_code (set_color normal)
     end
-    
+
     if test -n "$fg"
         set fg_code (set_color $fg)
     else
         set fg_code (set_color normal)
     end
-    
+
     # Handle segment separator
     if test "$current_bg" != "NONE" -a "$bg" != "$current_bg"
         echo -n " "(set_color -b $bg)(set_color $current_bg)"$segment_separator"(set_color $fg)" "
     else
         echo -n "$bg_code$fg_code "
     end
-    
+
     set current_bg $bg
     if test -n "$content"
         echo -n "$content"
@@ -65,17 +65,21 @@ function prompt_git -d "Display git information"
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1
         set -l dirty ''
         set -l ref (git symbolic-ref HEAD 2>/dev/null | sed 's|refs/heads/||')
-        
+
+        # Refresh the index's cached stat info first, otherwise diff-index
+        # can misreport "dirty" right after a checkout due to racy timestamps
+        git update-index -q --refresh 2>/dev/null
+
         # Check if repo is dirty
         if not git diff-index --quiet HEAD -- 2>/dev/null
             set dirty '±'
         end
-        
+
         # Handle detached head
         if test -z "$ref"
             set ref "➦ "(git show-ref --head -s --abbrev | head -n1 2>/dev/null)
         end
-        
+
         # Choose color based on dirty status
         if test -n "$dirty"
             prompt_segment yellow black "$ref$dirty"
@@ -93,22 +97,22 @@ end
 
 function prompt_status -d "Display status indicators"
     set -l symbols
-    
+
     # Check last command exit status
     if test $status -ne 0
         set symbols $symbols (set_color red)"✘"(set_color normal)
     end
-    
+
     # Check if root
     if test (id -u) -eq 0
         set symbols $symbols (set_color yellow)"⚡"(set_color normal)
     end
-    
+
     # Check for background jobs
     if jobs -q
         set symbols $symbols (set_color cyan)"⚙"(set_color normal)
     end
-    
+
     if test (count $symbols) -gt 0
         prompt_segment black white (string join ' ' $symbols)
     end
